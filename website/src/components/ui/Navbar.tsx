@@ -18,6 +18,14 @@ const navLinks = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [companyInfo, setCompanyInfo] = useState<{ shortName?: string; shortNameEn?: string; name?: string; nameEn?: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/company-info")
+      .then((res) => res.json())
+      .then((data) => setCompanyInfo(data))
+      .catch((err) => console.error("Failed to load company info in navbar:", err));
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -183,8 +191,8 @@ export default function Navbar() {
 
               {/* Menu Footer */}
               <div className="px-5 py-4 border-t border-neutral-100">
-                <p className="text-[10px] text-neutral-400 font-light tracking-wider">
-                  云路复材 YUNLU COMPOSITES
+                <p className="text-[10px] text-neutral-400 font-light tracking-wider uppercase">
+                  {(companyInfo?.shortName || companyInfo?.name || "云路复材")} {(companyInfo?.shortNameEn || companyInfo?.nameEn || "YUNLU COMPOSITES")}
                 </p>
               </div>
             </motion.div>

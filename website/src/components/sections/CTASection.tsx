@@ -10,11 +10,11 @@ export default function CTASection() {
 
   const [ctaData, setCtaData] = useState({
     title: "为您的项目寻找最优复材解决方案",
-    description: "无论您处于方案规划阶段还是在大批量采购阶段，云路复材的专业工程服务团队都将为您提供量身定制的支持。",
+    description: "无论您处于方案规划阶段还是在大批量采购阶段，我们的专业工程服务团队都将为您提供量身定制的支持。",
     cards: [
       {
         title: "获取产品手册",
-        description: "全面了解云路复材三维编织装备、专用核心配件及成型平台的详细技术参数与产品谱系。",
+        description: "全面了解三维编织装备、专用核心配件及成型平台的详细技术参数与产品谱系。",
         buttonText: "获取电子手册",
         purpose: "获取产品手册",
         tag: "低门槛 • 快速获取"
@@ -97,7 +97,7 @@ export default function CTASection() {
   };
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#0c1f38] via-[#0d2545] to-[#12365c] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 lg:px-24 text-white overflow-hidden">
+    <section id="contact" className="relative w-full bg-gradient-to-br from-[#0c1f38] via-[#0d2545] to-[#12365c] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 lg:px-24 text-white overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />

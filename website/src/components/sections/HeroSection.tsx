@@ -83,7 +83,7 @@ export default function HeroSection() {
         <div className="hero-text flex flex-col sm:flex-row gap-3 sm:gap-6 w-full sm:w-auto">
            <MotionButton>获取设备方案</MotionButton>
            <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-neutral-300 hover:bg-neutral-100 active:bg-neutral-200 transition-colors text-sm font-bold tracking-widest text-neutral-800 uppercase">
-             了解云路复材
+             了解我们
            </button>
         </div>
       </div>

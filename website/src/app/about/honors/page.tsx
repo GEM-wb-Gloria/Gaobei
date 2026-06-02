@@ -48,7 +48,7 @@ export default function HonorsPage() {
     hero: {
       title: "产学研深度融合与核心科技资产",
       subtitle: "资质荣誉 · HONORS & CERTIFICATES",
-      description: "坚持科学技术是第一生产力，云路复材通过自主创新与严谨验证，铸就扎实的行业声誉。"
+      description: "坚持科学技术是第一生产力，我们通过自主创新与严谨验证，铸就扎实的行业声誉。"
     }
   };
 

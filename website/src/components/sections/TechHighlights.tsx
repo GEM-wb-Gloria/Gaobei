@@ -17,7 +17,7 @@ export default function TechHighlights() {
   const [data, setData] = useState({
     title: "以自主研发科技，定义复材制造未来",
     subtitle: "技术壁垒 • 核心优势",
-    description: "云路复材攻克三维立体编织工艺瓶颈，结合数字孪生与自动化智造系统，提供高强度、定制化、高一致性的前沿复合材料方案。",
+    description: "攻克三维立体编织工艺瓶颈，结合数字孪生与自动化智造系统，提供高强度、定制化、高一致性的前沿复合材料方案。",
     cards: [
       {
         id: "braiding",

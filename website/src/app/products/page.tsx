@@ -28,6 +28,7 @@ interface LandingData {
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [landingData, setLandingData] = useState<LandingData | null>(null);
+  const [companyInfo, setCompanyInfo] = useState<{ shortName?: string; name?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
 
@@ -35,13 +36,17 @@ export default function ProductsPage() {
     setMounted(true);
     Promise.all([
       fetch("/api/products").then((res) => res.json()),
-      fetch("/api/products/landing").then((res) => res.json())
+      fetch("/api/products/landing").then((res) => res.json()),
+      fetch("/api/company-info").then((res) => res.json()).catch(() => null)
     ])
-      .then(([productsData, landingVal]) => {
+      .then(([productsData, landingVal, infoData]) => {
         if (Array.isArray(productsData)) {
           setProducts(productsData);
         }
         setLandingData(landingVal);
+        if (infoData) {
+          setCompanyInfo(infoData);
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -54,7 +59,7 @@ export default function ProductsPage() {
     hero: {
       title: "先进三维编织装备与成型平台",
       subtitle: "产品与解决方案 · PRODUCTS",
-      description: "云路复材为科研院所及企业客户提供从纤维编织到树脂成型的全流程闭环软硬件产品体系。"
+      description: "为科研院所及企业客户提供从纤维编织到树脂成型的全流程闭环软硬件产品体系。"
     },
     customService: {
       title: "非标自动化装备定制服务",
@@ -166,7 +171,7 @@ export default function ProductsPage() {
 
                   {/* 卡片底层按钮 */}
                   <div className="z-10 mt-auto flex items-center justify-between text-sm">
-                    <span className="text-neutral-400 font-light">云路复材原厂技术支持</span>
+                    <span className="text-neutral-400 font-light">{(companyInfo?.shortName || "云路复材")}原厂技术支持</span>
                     <span className="px-5 py-2.5 rounded-full bg-white text-neutral-950 font-bold hover:bg-neutral-100 transition-colors shadow-md group-hover:scale-105 transition-transform duration-300">
                       查看产品列表 →
                     </span>

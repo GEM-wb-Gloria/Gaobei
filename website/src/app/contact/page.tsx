@@ -16,6 +16,8 @@ interface InfoSection {
   servicePhone: string;
   recruitmentEmail: string;
   mapImage: string;
+  centerName?: string;
+  mapDescription?: string;
 }
 
 interface SalesSection {
@@ -247,7 +249,7 @@ export default function ContactPage() {
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#0d102c] mt-3">地理位置示意图</h2>
               <p className="text-neutral-500 text-xs sm:text-sm mt-1.5 font-light">
-                云路复材智能制造研发中心 · 重庆市沙坪坝区大学城中路
+                {data.info.mapDescription || `${data.info.centerName || "云路复材智能制造研发中心"} · ${data.info.address}`}
               </p>
             </div>
 
@@ -256,7 +258,7 @@ export default function ContactPage() {
               {data.info.mapImage ? (
                 <img
                   src={`/api/contact/${encodeURIComponent(data.info.mapImage)}`}
-                  alt="云路复材智能制造研发中心位置"
+                  alt={`${data.info.centerName || "云路复材智能制造研发中心"}位置`}
                   className="w-full h-full object-cover rounded-2xl"
                 />
               ) : (
@@ -271,7 +273,7 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div className="bg-[#0d102c] text-white text-[10px] font-semibold px-2.5 py-1 rounded shadow-md tracking-wider">
-                      云路复材智能制造研发中心
+                      {data.info.centerName || "云路复材智能制造研发中心"}
                     </div>
                   </div>
                 </>

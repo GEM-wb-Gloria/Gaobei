@@ -27,17 +27,23 @@ export default function ProductDetailPage(props: { params: Promise<{ categoryId:
   const router = useRouter();
   const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
   const [productItem, setProductItem] = useState<ProductItem | null>(null);
+  const [companyInfo, setCompanyInfo] = useState<{ shortName?: string; name?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [otherProducts, setOtherProducts] = useState<ProductItem[]>([]);
 
   useEffect(() => {
-    fetch(`/api/products/${params.categoryId}`)
-      .then((res) => {
+    Promise.all([
+      fetch(`/api/products/${params.categoryId}`).then((res) => {
         if (!res.ok) throw new Error("Failed to load category");
         return res.json();
-      })
-      .then((data) => {
+      }),
+      fetch("/api/company-info").then((res) => res.json()).catch(() => null)
+    ])
+      .then(([data, infoData]) => {
         setCategoryData(data);
+        if (infoData) {
+          setCompanyInfo(infoData);
+        }
         if (data.products && Array.isArray(data.products)) {
           const item = data.products.find((p: any) => p.id === params.productId);
           if (item) {
@@ -177,7 +183,7 @@ export default function ProductDetailPage(props: { params: Promise<{ categoryId:
           <div className="mt-12 pt-8 border-t border-neutral-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <h4 className="text-base font-bold text-neutral-900 mb-1">对该型号装备有技术咨询需求？</h4>
-              <p className="text-neutral-500 text-xs font-light">云路复材专业技术支持团队将为您量身定制成型工艺解决方案</p>
+              <p className="text-neutral-500 text-xs font-light">{(companyInfo?.shortName || "云路复材")}专业技术支持团队将为您量身定制成型工艺解决方案</p>
             </div>
             <Link
               href="/#contact"

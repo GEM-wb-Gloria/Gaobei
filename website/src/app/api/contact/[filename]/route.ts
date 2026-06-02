@@ -9,7 +9,11 @@ export async function GET(
   try {
     const { filename } = await props.params;
     const decodedFilename = decodeURIComponent(filename);
-    const filePath = path.join(process.cwd(), "../asset/front-contact", decodedFilename);
+    let filePath = path.join(process.cwd(), "../asset/front-contact", decodedFilename);
+
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), "../asset/contact", decodedFilename);
+    }
 
     if (!fs.existsSync(filePath)) {
       return new NextResponse("File not found", { status: 404 });

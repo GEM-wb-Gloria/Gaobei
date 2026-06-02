@@ -10,6 +10,8 @@ export async function GET() {
     let info: any = {
       name: "云路复材",
       nameEn: "YUNLU COMPOSITES",
+      shortName: "云路复材",
+      shortNameEn: "YUNLU COMPOSITES",
       description: "掌握三维编织核心技术，打造数字孪生自动化产线。为航空航天、新能源与汽车轻量化提供国际先进的复合材料高端制造解决方案。",
       buttons: ["企业简介", "发展历程", "企业文化", "资质荣誉"],
       news: []

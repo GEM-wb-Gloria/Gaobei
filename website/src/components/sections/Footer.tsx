@@ -56,11 +56,11 @@ export default function Footer() {
     ],
     footer: {
       email: "info@yunlu-composites.com",
-      address: "重庆市沙坪坝区大学城中路（云路复材智能制造研发中心）",
-      copyright: "云路复材 2023 - 2026 版权所有 渝ICP备2023004561号-1",
-      support: "技术支持：云路智造团队",
+      address: "智能制造研发中心",
+      copyright: "版权所有 渝ICP备2023004561号-1",
+      support: "技术支持：智造团队",
       qrCodes: [
-        { label: "云路复材", image: "official.png" },
+        { label: "官方微信", image: "official.png" },
         { label: "官方微信", image: "wechat.png" },
         { label: "技术支持", image: "support.png" }
       ]

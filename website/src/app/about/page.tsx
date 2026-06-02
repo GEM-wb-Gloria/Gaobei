@@ -246,7 +246,7 @@ export default function AboutPage() {
           {data.honorsSummary?.title || "学术与资质荣誉"}
         </h2>
         <p className="text-neutral-500 font-light text-sm max-w-xl mx-auto mb-8">
-          {data.honorsSummary?.description || "坚持学术底纹与市场导向双重驱动，云路复材已获得多项国家级科研鉴定及行业体系认定。"}
+          {data.honorsSummary?.description || "坚持学术底蕴与市场导向双重驱动，我们已获得多项国家级科研鉴定及行业体系认定。"}
         </p>
         <div className="flex flex-wrap justify-center gap-6">
           {(data.honorsSummary?.badges || [
