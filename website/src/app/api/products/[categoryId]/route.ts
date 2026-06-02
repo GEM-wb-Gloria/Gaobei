@@ -34,6 +34,36 @@ export async function GET(
             const productContent = fs.readFileSync(productInfoPath, "utf-8");
             const productData = JSON.parse(productContent);
             if (productData && productData.id) {
+              const productId = productData.id;
+              let productImages = productData.images || [];
+
+              // If images array is empty, dynamically scan the folder for images
+              if (productImages.length === 0) {
+                const imageExtensions = [".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif"];
+                try {
+                  const pFiles = fs.readdirSync(productDir);
+                  const scannedImages = pFiles
+                    .filter((f) => {
+                      const ext = path.extname(f).toLowerCase();
+                      const isFile = fs.statSync(path.join(productDir, f)).isFile();
+                      return isFile && imageExtensions.includes(ext);
+                    })
+                    .map((f) => `/api/products/image/${categoryId}/${productId}/${f}`);
+                  productImages = scannedImages;
+                } catch (e) {
+                  console.error(`Failed to scan product directory for images: ${productDir}`, e);
+                }
+              } else {
+                // Map existing relative image paths to the api endpoint
+                productImages = productImages.map((img: string) => {
+                  if (img.startsWith("/") || img.startsWith("http")) {
+                    return img;
+                  }
+                  return `/api/products/image/${categoryId}/${productId}/${img}`;
+                });
+              }
+
+              productData.images = productImages;
               products.push(productData);
             }
           } catch (err) {

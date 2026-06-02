@@ -24,6 +24,7 @@ export default function HonorsPage() {
   const [honorsList, setHonorsList] = useState<HonorItem[]>([]);
   const [landingData, setLandingData] = useState<LandingData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     Promise.all([
@@ -116,32 +117,45 @@ export default function HonorsPage() {
                     {honor.desc}
                   </p>
 
-                  {/* Certificate Image Mock Box */}
+                  {/* Certificate Image Box */}
                   {honor.images && honor.images.length > 0 && (
-                    <div className="mt-6 aspect-[4/3] w-full rounded-2xl bg-white border border-dashed border-neutral-300 flex flex-col items-center justify-center gap-3 relative overflow-hidden shadow-inner group-hover:border-[#2f55d4]/50 transition-colors duration-300">
-                      {/* Decorative certificate corners */}
-                      <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t border-l border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
-                      <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t border-r border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
-                      <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b border-l border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
-                      <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b border-r border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
-                      
-                      {/* Badge/Seal Icon outline */}
-                      <svg
-                        className="w-10 h-10 text-neutral-300 group-hover:text-[#2f55d4]/40 transition-colors duration-300"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    <div className="mt-6 aspect-[4/3] w-full rounded-2xl bg-white border border-dashed border-neutral-300 flex items-center justify-center relative overflow-hidden shadow-inner group-hover:border-[#2f55d4]/50 transition-colors duration-300">
+                      {!failedImages[honor.id] ? (
+                        <img
+                          src={honor.images[0]}
+                          alt={`${honor.title} 证书`}
+                          className="w-full h-full object-contain p-2"
+                          onError={() => {
+                            setFailedImages((prev) => ({ ...prev, [honor.id]: true }));
+                          }}
                         />
-                      </svg>
-                      <span className="text-xs text-neutral-400 font-light tracking-wider">
-                        {honor.title} 证书图片
-                      </span>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center gap-3 w-full h-full bg-white relative">
+                          {/* Decorative certificate corners */}
+                          <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t border-l border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
+                          <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t border-r border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
+                          <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b border-l border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
+                          <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b border-r border-neutral-300 group-hover:border-[#2f55d4]/50 transition-colors duration-300" />
+                          
+                          {/* Badge/Seal Icon outline */}
+                          <svg
+                            className="w-10 h-10 text-neutral-300 group-hover:text-[#2f55d4]/40 transition-colors duration-300"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"
+                            />
+                          </svg>
+                          <span className="text-xs text-neutral-400 font-light tracking-wider">
+                            {honor.title} 证书图片
+                          </span>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

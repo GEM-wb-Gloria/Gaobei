@@ -11,6 +11,7 @@ interface ProductItem {
   summary: string;
   specs: string[];
   content: string;
+  images?: string[];
 }
 
 interface CategoryData {
@@ -150,18 +151,6 @@ export default function CategoryProductsPage(props: { params: Promise<{ category
                   </ul>
                 </div>
 
-                {/* 产品图示占位框 */}
-                <div className="w-full h-44 bg-[#0a182b]/80 border border-[#2f55d4]/15 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group-hover:border-[#2f55d4]/30 transition-all duration-300 mb-6">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:12px_20px] opacity-10" />
-                  <div className="absolute w-24 h-24 bg-blue-500/5 rounded-full blur-lg" />
-                  
-                  <div className="z-10 flex flex-col items-center gap-1.5">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 text-blue-400/80 group-hover:scale-105 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
-                    </svg>
-                    <span className="text-[10px] text-blue-300/40 font-bold tracking-widest uppercase">产品图示暂缺 (后续补全)</span>
-                  </div>
-                </div>
 
                 {/* 卡片底层按钮 */}
                 <div className="z-10 mt-auto flex items-center justify-between text-sm">

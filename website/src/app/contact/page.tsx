@@ -251,24 +251,31 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* SVG & CSS grid coordinate mock map layout */}
+            {/* Map Display */}
             <div className="aspect-[4/3] w-full rounded-2xl bg-neutral-50 border border-dashed border-neutral-300 flex flex-col items-center justify-center gap-4 relative overflow-hidden shadow-inner group-hover:border-[#2f55d4]/50 transition-colors duration-300">
-              <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:25px_25px]" />
-              
-              <div className="absolute w-[160px] h-[160px] border border-blue-500/20 rounded-full animate-pulse pointer-events-none opacity-40" />
-              
-              {/* Location marker pin */}
-              <div className="relative z-10 flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-100 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-[#2f55d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div className="bg-[#0d102c] text-white text-[10px] font-semibold px-2.5 py-1 rounded shadow-md tracking-wider">
-                  云路复材智能制造研发中心
-                </div>
-              </div>
+              {data.info.mapImage ? (
+                <img
+                  src={`/api/contact/${encodeURIComponent(data.info.mapImage)}`}
+                  alt="云路复材智能制造研发中心位置"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:25px_25px]" />
+                  <div className="absolute w-[160px] h-[160px] border border-blue-500/20 rounded-full animate-pulse pointer-events-none opacity-40" />
+                  <div className="relative z-10 flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-100 group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-6 h-6 text-[#2f55d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div className="bg-[#0d102c] text-white text-[10px] font-semibold px-2.5 py-1 rounded shadow-md tracking-wider">
+                      云路复材智能制造研发中心
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
 

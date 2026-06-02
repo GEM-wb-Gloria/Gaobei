@@ -12,6 +12,8 @@ interface NewsItem {
   category?: string;
   summary: string;
   content: string;
+  coverImage?: string;
+  images?: string[];
 }
 
 export default function NewsDetailPage(props: { params: Promise<{ id: string }> }) {
@@ -128,6 +130,26 @@ export default function NewsDetailPage(props: { params: Promise<{ id: string }> 
               </p>
             ))}
           </div>
+
+          {/* News Images Section */}
+          {newsItem.images && newsItem.images.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-neutral-100">
+              <h3 className="text-lg font-bold text-[#0d102c] mb-6">
+                相关图片
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {newsItem.images.map((image, idx) => (
+                  <div key={idx} className="border border-neutral-200/50 rounded-2xl overflow-hidden shadow-sm bg-neutral-50 flex items-center justify-center">
+                    <img
+                      src={image.startsWith('/') ? image : `/api/news/image/${newsItem.id}/${encodeURIComponent(image)}`}
+                      alt={`${newsItem.title} - 图${idx + 1}`}
+                      className="w-full h-auto object-cover max-h-[400px]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
         </motion.article>
 
