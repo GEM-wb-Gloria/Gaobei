@@ -314,7 +314,7 @@ export default function TechnologyPage() {
           <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
               <span className="text-xs md:text-sm font-bold tracking-widest text-[#2f55d4] uppercase block mb-3">
-                01. 核心织造工艺
+                01. 核心编织工艺
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-[#0d102c] tracking-tight mb-6">
                 {techData.braiding.title}
@@ -344,7 +344,7 @@ export default function TechnologyPage() {
         <div className="mt-12 md:mt-16 bg-white border border-neutral-200/60 rounded-3xl p-6 sm:p-8 shadow-sm">
           <h3 className="text-lg md:text-xl font-bold text-[#0d102c] mb-6 flex items-center gap-2">
             <span className="w-1.5 h-5 bg-[#2f55d4] rounded-full" />
-            三维编织核心技术参数指标
+            核心技术参数指标
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm border-collapse">

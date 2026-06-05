@@ -25,7 +25,7 @@ export default function TechHighlights() {
         subtitle: "3D Braiding Technology",
         description: "实现纤维多维立体交叉编织，从根本上解决层间剥离难题，为结构件提供极致的抗冲击与轻量化表现。",
         href: "/technology#braiding",
-        pills: ["1.5m 最大外径", "6m 编织长度", "近净尺寸成形"]
+        pills: ["1.5m 最大外径", "6m 编织长度", "近净尺寸一次成型"]
       },
       {
         id: "digital-twin",

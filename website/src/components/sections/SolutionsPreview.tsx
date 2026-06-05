@@ -24,7 +24,7 @@ export default function SolutionsPreview() {
         subtitle: "Aerospace & Defense",
         description: "针对极端工况要求，提供包括机身肋梁、发动机喷管保护层、整流罩、机翼前缘等高强度、零缺陷关键承力件的三维立体编织解决方案。",
         href: "/solutions#aerospace",
-        highlights: ["无层间剥离结构", "极端耐温与防热", "近净尺寸成形"]
+        highlights: ["无层间剥离结构", "极端耐温与防热", "近净尺寸一次成型"]
       },
       {
         id: "energy",
